@@ -1,3 +1,9 @@
+-------
+title: "Onboard a AWS EC2 instance with Windows Server & Microsoft SQL Server to Azure Arc"
+linkTitle: "Onboard a AWS EC2 instance with Windows Server & Microsoft SQL Server to Azure Arc"
+weight: 1
+---
+
 # Onboard a AWS EC2 instance with Windows Server & Microsoft SQL Server to Azure Arc
 
 The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy a Windows Server installed with Microsoft SQL Server 2019 (Developer edition) in a Amazon Web Services (AWS) EC2 instance and connect it as an Azure Arc enabled SQL server resource.
@@ -53,27 +59,27 @@ Create AWS User IAM Key. An access key grants programmatic access to your resour
 
 * Navigate to the [IAM Access page](https://console.aws.amazon.com/iam/home#/home).
 
-![](../img/aws_terraform_winsrv/01.png)
+![](./01.png)
 
 * Select the **Users** from the side menu.
 
-![](../img/aws_terraform_winsrv/02.png)
+![](./02.png)
     
 * Select the **User** you want to create the access key for.
 
-![](../img/aws_terraform_winsrv/03.png)
+![](./03.png)
 
 * Select ***Security credentials** of the **User** selected.
 
-![](../img/aws_terraform_winsrv/04.png)
+![](./04.png)
 
 * Under **Access Keys** select **Create Access Keys**.
 
-![](../img/aws_terraform_winsrv/05.png)
+![](./05.png)
 
 * In the popup window it will show you the ***Access key ID*** and ***Secret access key***. Save both of these values to configure the **Terraform plan** variables later.
 
-![](../img/aws_terraform_winsrv/06.png)
+![](./06.png)
 
 ## Automation Flow
 
@@ -133,7 +139,7 @@ export TF_VAR_admin_user='Guest OS Admin Username'
 export TF_VAR_admin_password='Guest OS Admin Password'
 ```
 
-![](../img/aws_terraform_winsrv/07.png)
+![](./07.png)
 
 * From the folder within your cloned repo where the Terraform binaries are, the below commands to download the needed TF providers and to run the plan. 
 
@@ -144,53 +150,53 @@ export TF_VAR_admin_password='Guest OS Admin Password'
 
 Once the Terraform plan deployment has completed, a new Windows Server VM will be up & running as well as an empty Azure Resource Group will be created.
 
-![](../img/aws_terraform_winsrv/08.png)
+![](./08.png)
 
-![](../img/aws_terraform_winsrv/09.png)
+![](./09.png)
 
-![](../img/aws_terraform_winsrv/10.png)
+![](./10.png)
 
 * Download the RDP file and log in to the VM (**using the data from the *TF_VAR_admin_user* and *TF_VAR_admin_password* environment variables**) which will initiate the *LogonScript* run. Let the script to run it's course and which will also close the PowerShell session when completed. 
 
-![](../img/aws_terraform_winsrv/11.png)
+![](./11.png)
 
-![](../img/aws_terraform_winsrv/12.png)
+![](./12.png)
 
 **Note: The script runtime will take ~10-15min to complete**
 
-![](../img/aws_terraform_winsrv/13.png)
+![](./13.png)
 
-![](../img/aws_terraform_winsrv/14.png)
+![](./14.png)
 
-![](../img/aws_terraform_winsrv/15.png)
+![](./15.png)
 
-![](../img/aws_terraform_winsrv/16.png)
+![](./16.png)
 
-![](../img/aws_terraform_winsrv/17.png)
+![](./17.png)
 
-![](../img/aws_terraform_winsrv/18.png)
+![](./18.png)
 
-![](../img/aws_terraform_winsrv/19.png)
+![](./19.png)
 
-![](../img/aws_terraform_winsrv/20.png)
+![](./20.png)
 
-![](../img/aws_terraform_winsrv/21.png)
+![](./21.png)
 
 * Open Microsoft SQL Server Management Studio (a Windows shortcut will be created for you) and validate the *AdventureWorksLT2019* sample database is deployed as well.
 
-![](../img/aws_terraform_winsrv/22.png)
+![](./22.png)
 
-![](../img/aws_terraform_winsrv/23.png)
+![](./23.png)
 
 * In the Azure Portal, notice you now have an Azure Arc enabled Server resource (with the MMA agent installed via an Extension), Azure Arc enabled SQL resource and Azure Log Analytics deployed.
 
-![](../img/aws_terraform_winsrv/24.png)
+![](./24.png)
 
-![](../img/aws_terraform_winsrv/25.png)
+![](./25.png)
 
-![](../img/aws_terraform_winsrv/26.png)
+![](./26.png)
 
-![](../img/aws_terraform_winsrv/27.png)
+![](./27.png)
 
 ## Azure SQL Assessment
 
@@ -202,22 +208,22 @@ Since the *LogonScript* run in the deployment step took care of deploying and in
 
 Clicking the "Download configuration script" will simply send a REST API call to the Azure portal which will make "Step3" available and will result with a grayed-out "View SQL Assessment Results" button.
 
-![](../img/aws_terraform_winsrv/28.png)
+![](./28.png)
 
-![](../img/aws_terraform_winsrv/29.png)
+![](./29.png)
 
-![](../img/aws_terraform_winsrv/30.png)
+![](./30.png)
 
 * After few minutes you will notice how the "View SQL Assessment Results" button is available for you to click on. At this point, the SQL assessment data and logs are getting injected to Azure Log Analytics.
 
 Initially, the amount of data will be limited as it take a while for the assessment to complete a full cycle but after few hours you should be able to see much more data coming in.  
 
-![](../img/aws_terraform_winsrv/31.png)
+![](./31.png)
 
-![](../img/aws_terraform_winsrv/32.png)
+![](./32.png)
 
 ## Cleanup
 
 To delete the environment, use the *`terraform destroy --auto-approve`* command which will delete the AWS and the Azure resources.
 
-![](../img/aws_terraform_winsrv/33.png)
+![](./33.png)

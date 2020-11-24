@@ -1,3 +1,9 @@
+-------
+title: "Onboard an Azure VM with Windows Server & Microsoft SQL Server to Azure Arc"
+linkTitle: "Onboard an Azure VM with Windows Server & Microsoft SQL Server to Azure Arc"
+weight: 1
+---
+
 # Onboard an Azure VM with Windows Server & Microsoft SQL Server to Azure Arc
 
 The following README will guide you on how to use the provided [Azure ARM Template](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) to deploy an Azure VM installed with Windows Server and Microsoft SQL Server 2019 (Developer edition) and connect it as an Azure Arc enabled SQL server resource.
@@ -122,15 +128,15 @@ As mentioned, this deployment will use an ARM Template. You will deploy a single
 
 * Once Azure resources has been provisioned, you will be able to see it in Azure portal.
 
-    ![](../img/azure_arm_template_winsrv/01.jpg)
+    ![](./01.jpg)
 
-    ![](../img/azure_arm_template_winsrv/02.jpg)
+    ![](./02.jpg)
 
 ## Windows Login & Post Deployment
 
 * Now that the Windows Server VM has been deployed, it is time to login to it. Using it's public IP, RDP to the VM.
 
-    ![](../img/azure_arm_template_winsrv/03.jpg)
+    ![](./03.jpg)
 
 * At first login, as mentioned in the "Automation Flow" section, a logon script will get executed. This script was created as part of the automated deployment process.
 
@@ -138,39 +144,39 @@ Let the script to run its course and **do not close** the PowerShell session, th
 
 > **[!NOTE] The script run time is ~10-15min long**
 
-![](../img/azure_arm_template_winsrv/04.jpg)
+![](./04.jpg)
 
-![](../img/azure_arm_template_winsrv/05.jpg)
+![](./05.jpg)
 
-![](../img/azure_arm_template_winsrv/06.jpg)
+![](./06.jpg)
 
-![](../img/azure_arm_template_winsrv/07.jpg)
+![](./07.jpg)
 
-![](../img/azure_arm_template_winsrv/08.jpg)
+![](./08.jpg)
 
-![](../img/azure_arm_template_winsrv/09.jpg)
+![](./09.jpg)
 
-![](../img/azure_arm_template_winsrv/10.jpg)
+![](./10.jpg)
 
-![](../img/azure_arm_template_winsrv/11.jpg)
+![](./11.jpg)
 
-![](../img/azure_arm_template_winsrv/12.jpg)
+![](./12.jpg)
 
-![](../img/azure_arm_template_winsrv/13.jpg)
+![](./13.jpg)
 
 * Upon successful run, in the Azure portal, notice you now have a new Azure Arc enabled server (with the Microsoft Monitoring agent installed via an extension) and Azure Arc enabled SQL resources as well as Azure Log Analytics added to the resource group.
 
-![](../img/azure_arm_template_winsrv/14.jpg)
+![](./14.jpg)
 
-![](../img/azure_arm_template_winsrv/15.jpg)
+![](./15.jpg)
 
-![](../img/azure_arm_template_winsrv/16.jpg)
+![](./16.jpg)
 
 * Open Microsoft SQL Server Management Studio (a Windows shortcut will be created for you) and validate the *AdventureWorksLT2019* sample database is deployed as well.
 
-![](../img/azure_arm_template_winsrv/17.jpg)
+![](./17.jpg)
 
-![](../img/azure_arm_template_winsrv/18.jpg)
+![](./18.jpg)
 
 ## Azure SQL Assessment
 
@@ -182,24 +188,24 @@ Since the *LogonScript* run in the deployment step took care of deploying and in
 
 Clicking the "Download configuration script" will simply send a REST API call to the Azure portal which will make "Step3" available and will result with a grayed-out "View SQL Assessment Results" button.
 
-![](../img/azure_arm_template_winsrv/19.jpg)
+![](./19.jpg)
 
-![](../img/azure_arm_template_winsrv/20.jpg)
+![](./20.jpg)
 
-![](../img/azure_arm_template_winsrv/21.jpg)
+![](./21.jpg)
 
-![](../img/azure_arm_template_winsrv/22.jpg)
+![](./22.jpg)
 
 It might take a bit of time, but after ~45-60min you will notice how the "View SQL Assessment Results" button is available for you to click on. At this point, the SQL assessment data and logs are getting injected to Azure Log Analytics.
 
 Initially, the amount of data will be limited as it take a while for the assessment to complete a full cycle but after few hours you should be able to see much more data coming in.  
 
-![](../img/azure_arm_template_winsrv/23.jpg)
+![](./23.jpg)
 
-![](../img/azure_arm_template_winsrv/24.jpg)
+![](./24.jpg)
 
 ## Cleanup
 
 To delete the entire deployment, simply delete the Resource Group from the Azure portal.
 
-![](../img/azure_arm_template_winsrv/25.jpg)
+![](./25.jpg)
