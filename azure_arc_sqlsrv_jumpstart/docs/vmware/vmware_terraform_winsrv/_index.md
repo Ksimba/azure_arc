@@ -1,4 +1,4 @@
--------
+---
 title: "Onboard a VMware vSphere-based Windows Server with SQL to Azure Arc"
 linkTitle: "Onboard a VMware vSphere-based Windows Server with SQL to Azure Arc"
 weight: 1
